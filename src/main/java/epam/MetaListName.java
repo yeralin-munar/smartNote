@@ -4,7 +4,8 @@ public class MetaListName {
     int id;
     String name;
 
-    MetaListName(String name) {
+    MetaListName(int id ,String name) {
+        this.id = id;
         this.name = name;
     }
 
