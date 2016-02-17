@@ -1,19 +1,19 @@
 package epam;
 
-public class MetaListName {
-    int id;
-    String name;
+class MetaListName{
+    private int id;
+    private String name;
 
     MetaListName(int id ,String name) {
         this.id = id;
         this.name = name;
     }
 
-    public int getId() {
+    int getId() {
         return id;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
@@ -24,4 +24,5 @@ public class MetaListName {
     public void setName(String name) {
         this.name = name;
     }
+
 }

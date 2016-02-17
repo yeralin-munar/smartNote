@@ -4,9 +4,9 @@ package epam;
 import java.util.ArrayList;
 
 abstract class NoteMetaList {
-    ArrayList<MetaListName> MetaListNames = new ArrayList<MetaListName>();
-    ArrayList<MetaListLink> MetaListLinks = new ArrayList<MetaListLink>();
-    int nameId, linkId;
+    private ArrayList<MetaListName> MetaListNames = new ArrayList<MetaListName>();
+    private ArrayList<MetaListLink> MetaListLinks = new ArrayList<MetaListLink>();
+    private int nameId, linkId;
     public void setName(String name) {
         MetaListNames.add(new MetaListName(nameId++,name));
     }
@@ -37,8 +37,9 @@ abstract class NoteMetaList {
         * Ищем нужное
         * */
         ArrayList<MetaListLink> Notes = new ArrayList<MetaListLink>();
+        int id = MetaListNames.indexOf(name);
         for (MetaListLink a:MetaListLinks) {
-            if (a.getMetaLink_id() == MetaListNames.indexOf(name)) Notes.add(a);
+            if (a.getMetaLink_id() == id) Notes.add(a);
         }
         return  Notes;///MetaListLinks.contains(link);
     }

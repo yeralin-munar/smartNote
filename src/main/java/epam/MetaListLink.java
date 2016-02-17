@@ -1,7 +1,7 @@
 package epam;
 
-public class MetaListLink {
-    int id, note_id, metaLink_id;
+class MetaListLink {
+    private int id, note_id, metaLink_id;
 
     MetaListLink(int id, int note_id, int metaLink_id) {
         this.id = id;
@@ -13,7 +13,7 @@ public class MetaListLink {
         return id;
     }
 
-    public int getMetaLink_id() {
+    int getMetaLink_id() {
         return metaLink_id;
     }
 
