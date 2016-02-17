@@ -19,7 +19,7 @@ abstract class NoteMetaList {
         else System.out.printf("Can't setLink by %s, because of absense this meta in DataBase",metaName);
     }
 
-    public String getMetaNameById (int id){
+    private String getMetaNameById(int id){
         for (MetaListName meta: MetaListNames) {
             if (id == meta.getId()) return meta.getName();
         }
@@ -47,31 +47,25 @@ abstract class NoteMetaList {
         * Проходимся по массиву MetaListLinks
         * Ищем нужное
         * */
-        ArrayList<MetaListLink> Notes = new ArrayList<MetaListLink>();
+        ArrayList<MetaListLink> notes = new ArrayList<MetaListLink>();
         int metaId = getMetaIdByName(metaName);
         if (metaId != -1) {
             for (MetaListLink metaLink : MetaListLinks) {
-                if (metaLink.getMetaLink_id() == metaId) Notes.add(metaLink);
+                if (metaLink.getMetaLink_id() == metaId) notes.add(metaLink);
             }
-            return Notes;///MetaListLinks.contains(link);
+            return notes;///MetaListLinks.contains(link);
         } else return null;
     }
 
-    public ArrayList<MetaListLink> getNotesMetaById (int noteId){
-        //MetaListLink link = new MetaListLink(note_id, MetaListNames.indexOf(name));
-        //MetaListLinks.get(id) - идет как объект
-        //http://stackoverflow.com/questions/985229/search-in-java-arraylist
-
-        /* Поиск
-        * Создается массив объектов ArrayList<MetaListLink> Notes = new ArrayList<MetaListLink>();
-        * Проходимся по массиву MetaListLinks
-        * Ищем нужное
-        * */
-        ArrayList<MetaListLink> Notes = new ArrayList<MetaListLink>();
+    /*
+    * Вывод всех meta, относящихся к определенному note
+    * */
+    public ArrayList<String> getNotesMetaById (int noteId){
+        ArrayList<String> metas = new ArrayList<String>();
         for (MetaListLink metaLink : MetaListLinks) {
-            if (metaLink.getNote_id() == noteId) Notes.add(metaLink);
+            if (metaLink.getNote_id() == noteId) metas.add(getMetaNameById(metaLink.getMetaLink_id()));
         }
-        return Notes;///MetaListLinks.contains(link);
+        return metas;///MetaListLinks.contains(link);
     }
 
     public void sortMetaListNamesById (){
