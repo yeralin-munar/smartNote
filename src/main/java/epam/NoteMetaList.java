@@ -50,11 +50,28 @@ abstract class NoteMetaList {
         ArrayList<MetaListLink> Notes = new ArrayList<MetaListLink>();
         int metaId = getMetaIdByName(metaName);
         if (metaId != -1) {
-            for (MetaListLink a : MetaListLinks) {
-                if (a.getMetaLink_id() == metaId) Notes.add(a);
+            for (MetaListLink metaLink : MetaListLinks) {
+                if (metaLink.getMetaLink_id() == metaId) Notes.add(metaLink);
             }
             return Notes;///MetaListLinks.contains(link);
         } else return null;
+    }
+
+    public ArrayList<MetaListLink> getNotesMetaById (int noteId){
+        //MetaListLink link = new MetaListLink(note_id, MetaListNames.indexOf(name));
+        //MetaListLinks.get(id) - идет как объект
+        //http://stackoverflow.com/questions/985229/search-in-java-arraylist
+
+        /* Поиск
+        * Создается массив объектов ArrayList<MetaListLink> Notes = new ArrayList<MetaListLink>();
+        * Проходимся по массиву MetaListLinks
+        * Ищем нужное
+        * */
+        ArrayList<MetaListLink> Notes = new ArrayList<MetaListLink>();
+        for (MetaListLink metaLink : MetaListLinks) {
+            if (metaLink.getNote_id() == noteId) Notes.add(metaLink);
+        }
+        return Notes;///MetaListLinks.contains(link);
     }
 
     public void sortMetaListNamesById (){
