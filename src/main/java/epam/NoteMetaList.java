@@ -2,6 +2,8 @@ package epam;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 abstract class NoteMetaList {
     private ArrayList<MetaListName> MetaListNames = new ArrayList<MetaListName>();
@@ -12,21 +14,30 @@ abstract class NoteMetaList {
     }
 
     public void setLink(int note_id, String metaName) {
-        MetaListLinks.add(new MetaListLink(linkId++ ,note_id, MetaListNames.indexOf(metaName)));
+        int metaId = getMetaIdByName(metaName);
+        if (metaId != -1) MetaListLinks.add(new MetaListLink(linkId++ ,note_id, metaId));
+        else System.out.printf("Can't setLink by %s, because of absense this meta in DataBase",metaName);
     }
 
-    public String getNameById (int id){
-        for (MetaListName note: MetaListNames) {
-            if (id == note.getId()) return note.getName();
+    public String getMetaNameById (int id){
+        for (MetaListName meta: MetaListNames) {
+            if (id == meta.getId()) return meta.getName();
         }
         //return MetaListNames.get(id).toString();
         return null;
     }
 
+    private int getMetaIdByName(String name){
+        for (MetaListName meta: MetaListNames) {
+            if (name.equals(meta.getName())) return meta.getId();
+        }
+        return -1;
+    }
+
     /*
      * Вернуть все записи (Note) относящиеся к определенной категории, тегу (MetaListName)
      * */
-    public ArrayList<MetaListLink> getMetaNotesByName (String name){
+    public ArrayList<MetaListLink> getMetaNotesByName (String metaName){
         //MetaListLink link = new MetaListLink(note_id, MetaListNames.indexOf(name));
         //MetaListLinks.get(id) - идет как объект
         //http://stackoverflow.com/questions/985229/search-in-java-arraylist
@@ -37,11 +48,54 @@ abstract class NoteMetaList {
         * Ищем нужное
         * */
         ArrayList<MetaListLink> Notes = new ArrayList<MetaListLink>();
-        int id = MetaListNames.indexOf(name);
-        for (MetaListLink a:MetaListLinks) {
-            if (a.getMetaLink_id() == id) Notes.add(a);
-        }
-        return  Notes;///MetaListLinks.contains(link);
+        int metaId = getMetaIdByName(metaName);
+        if (metaId != -1) {
+            for (MetaListLink a : MetaListLinks) {
+                if (a.getMetaLink_id() == metaId) Notes.add(a);
+            }
+            return Notes;///MetaListLinks.contains(link);
+        } else return null;
+    }
+
+    public void sortMetaListNamesById (){
+        Collections.sort(MetaListNames, new Comparator<MetaListName>(){
+            //@Override
+            public int compare(MetaListName a, MetaListName b) {
+                if (a.getId() < b.getId()) return -1;
+                else if (a.getId() > b.getId()) return 1;
+                return 0;
+            }
+        });
+    }
+
+    public void sortMetaListNamesByName (){
+        Collections.sort(MetaListNames, new Comparator<MetaListName>(){
+            //@Override
+            public int compare(MetaListName a, MetaListName b) {
+                return a.getName().compareTo(b.getName());
+            }
+        });
+    }
+    public void sortMetaListLinksByNoteId (){
+        Collections.sort(MetaListLinks, new Comparator<MetaListLink>(){
+            //@Override
+            public int compare(MetaListLink a, MetaListLink b) {
+                if (a.getNote_id() < b.getNote_id()) return -1;
+                else if (a.getNote_id() > b.getNote_id()) return 1;
+                return 0;
+            }
+        });
+    }
+
+    public void sortMetaListLinksByMetaLinkId (){
+        Collections.sort(MetaListLinks, new Comparator<MetaListLink>(){
+            //@Override
+            public int compare(MetaListLink a, MetaListLink b) {
+                if (a.getMetaLink_id() < b.getMetaLink_id()) return -1;
+                else if (a.getMetaLink_id() > b.getMetaLink_id()) return 1;
+                return 0;
+            }
+        });
     }
 
     /*
