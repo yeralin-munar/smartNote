@@ -65,7 +65,7 @@ abstract class NoteMetaList {
         for (MetaListLink metaLink : MetaListLinks) {
             if (metaLink.getNote_id() == noteId) metas.add(getMetaNameById(metaLink.getMetaLink_id()));
         }
-        return metas;///MetaListLinks.contains(link);
+        return metas;
     }
 
     public void sortMetaListNamesById (){
