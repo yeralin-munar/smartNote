@@ -5,27 +5,40 @@ import javafx.scene.chart.PieChart;
 import java.util.Date;
 
 public class Note {
-    int id;
-    String header, text, importance;
-    Date dateCreation, dateChange;
+    private int id;
+    private String title, content, importance;
+    private Date dateCreation, dateEdit;
+
+    Note (int id, String title, String content, Date dateCreation){
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.dateCreation = dateCreation;
+    }
 
     public int getId() {
         return id;
     }
 
-    public String getHeader() {
-        return header;
+    public String getTitle() {
+        return title;
     }
 
-    public String getText() {
-        return text;
+    public String getContent() {
+        return content;
     }
 
     public Date getDateCreation() {
         return dateCreation;
     }
 
-    public Date getDateChange() {
-        return dateChange;
+    public Date getDateChange() {return dateEdit;}
+
+
+    public void print(){
+        System.out.println("----------- "+this.getTitle()+" -----------");
+        //System.out.println("Category: "+this.getCategoryById());
+        System.out.println("\n"+this.getContent()+"\n");
+        System.out.println("");
     }
 }

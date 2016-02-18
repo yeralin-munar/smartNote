@@ -19,7 +19,7 @@ abstract class NoteMetaList {
         else System.out.printf("Can't setLink by %s, because of absense this meta in DataBase",metaName);
     }
 
-    private String getMetaNameById(int id){
+    public String getMetaNameById(int id){
         for (MetaListName meta: MetaListNames) {
             if (id == meta.getId()) return meta.getName();
         }
@@ -27,7 +27,7 @@ abstract class NoteMetaList {
         return null;
     }
 
-    private int getMetaIdByName(String name){
+    public int getMetaIdByName(String name){
         for (MetaListName meta: MetaListNames) {
             if (name.equals(meta.getName())) return meta.getId();
         }
