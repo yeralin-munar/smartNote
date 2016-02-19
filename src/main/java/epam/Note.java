@@ -35,10 +35,10 @@ public class Note {
     public Date getDateChange() {return dateEdit;}
 
 
-    public void print(){
+    /*public void print(){
         System.out.println("----------- "+this.getTitle()+" -----------");
         //System.out.println("Category: "+this.getCategoryById());
         System.out.println("\n"+this.getContent()+"\n");
         System.out.println("");
-    }
+    }*/
 }

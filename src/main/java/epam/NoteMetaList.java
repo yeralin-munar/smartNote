@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-abstract class NoteMetaList {
+class NoteMetaList {
     private ArrayList<MetaListName> MetaListNames = new ArrayList<MetaListName>();
     private ArrayList<MetaListLink> MetaListLinks = new ArrayList<MetaListLink>();
     private int nameId, linkId;
