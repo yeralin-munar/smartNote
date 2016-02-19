@@ -2,7 +2,6 @@ package epam;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.StringTokenizer;
 
 public class SmartNote {
 
@@ -15,17 +14,17 @@ public class SmartNote {
         notes.add(new Note(noteId++, title, content, dateCreation));
     }
     public void addCategory(String categoryName){
-        category.setName(categoryName);
+        category.addName(categoryName);
     }
     public void addTag(String tagName){
-        tag.setName(tagName);
+        tag.addName(tagName);
     }
     public void linkCategoryToNote(int noteId, String categoryName){
-        category.setLink(noteId, categoryName);
+        category.addLink(noteId, categoryName);
     }
 
     public void linkTagToNote(int noteId, String tagName){
-        tag.setLink(noteId, tagName);
+        tag.addLink(noteId, tagName);
     }
     public ArrayList<Note> getNotes(){
         return notes;
@@ -79,13 +78,13 @@ public class SmartNote {
             System.out.println("\n");
             System.out.println("## Note-"+note.getId()+" ##");
             System.out.println("----------- "+note.getTitle()+" -----------");
-            System.out.println("Categories: "+category.getNotesMetaById(note.getId()));
+            System.out.println("Categories: "+category.getNoteMetasById(note.getId()));
             System.out.println("\n");
             for (String con:wordWrap(note.getContent(), 100)) {
                 System.out.println(con.trim());
             }
             System.out.println("\n");
-            System.out.println("tags: "+tag.getNotesMetaById(note.getId()));
+            System.out.println("tags: "+tag.getNoteMetasById(note.getId()));
         }
     }
 }
