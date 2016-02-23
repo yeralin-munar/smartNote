@@ -3,7 +3,7 @@ package com.epam.entity;
 /**
  * Created by Munar on 22.02.2016.
  */
-public class BaseEntity {
+class BaseEntity {
     private int id;
 
     BaseEntity(int id){
@@ -13,7 +13,7 @@ public class BaseEntity {
         this.id = id;
     }
 
-    public int getId() {
+    int getId() {
         return id;
     }
 }
