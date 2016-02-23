@@ -10,5 +10,6 @@ public class Main {
         fabric.print();
 
         fabric.printNotesRelToCat();
+        
     }
 }
