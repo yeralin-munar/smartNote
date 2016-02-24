@@ -49,7 +49,7 @@ public class Note extends BaseEntity {
         this.title = title;
     }
 
-    private String getTitle() {
+    public String getTitle() {
         return this.title;
     }
 
@@ -57,30 +57,30 @@ public class Note extends BaseEntity {
         this.content = content;
     }
 
-    private String getContent() {
+    public String getContent() {
         return this.content;
     }
 
-    private void setCategory(String[] category) {
+    public void setCategory(String[] category) {
         Collections.addAll(this.category, category);
     }
     public void setCategory(String category) {
         this.category.add(category);
     }
 
-    private ArrayList<String> getCategory() {
+    public ArrayList<String> getCategory() {
         return this.category;
     }
 
-    private void setTag(String[] tag) {
+    public void setTag(String[] tag) {
         Collections.addAll(this.tag, tag);
     }
 
-    private void setTag(String tag) {
+    public void setTag(String tag) {
         this.tag.add(tag);
     }
 
-    private ArrayList<String> getTag() {
+    public ArrayList<String> getTag() {
         return this.tag;
     }
 
@@ -88,15 +88,15 @@ public class Note extends BaseEntity {
         this.create = create;
     }
 
-    private DateTime getCreate() {
+    public DateTime getCreate() {
         return this.create;
     }
 
-    private void setModified(DateTime modified) {
+    public void setModified(DateTime modified) {
         this.modified = modified;
     }
 
-    private DateTime getModified() {
+    public DateTime getModified() {
         return this.modified;
     }
 

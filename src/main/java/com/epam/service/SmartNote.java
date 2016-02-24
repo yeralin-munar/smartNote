@@ -7,6 +7,8 @@ import org.joda.time.DateTime;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by Munar on 22.02.2016.
@@ -81,4 +83,23 @@ public class SmartNote {
             if (note.checkTag(tagName)) note.printNote();
         }
     }
+
+    public void sortNotesByTitle(){
+        Collections.sort(notes, new Comparator<Note>(){
+            //@Override
+            public int compare(Note a, Note b) {
+                return a.getTitle().compareTo(b.getTitle());
+            }
+        });
+    }
+
+    public void sortNotesByDate(){
+        Collections.sort(notes, new Comparator<Note>(){
+            //@Override
+            public int compare(Note a, Note b) {
+                return a.getCreate().compareTo(b.getCreate());
+            }
+        });
+    }
+
 }

@@ -42,6 +42,7 @@ public class NoteFabric {
         }
     }
     public void print(){
+        smartNote.sortNotesByDate();
         for (Note note: smartNote.getNotes()){
             note.printNote();
         }
