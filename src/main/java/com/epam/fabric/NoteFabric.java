@@ -1,12 +1,13 @@
 package com.epam.fabric;
 
+import com.epam.entity.Category;
 import com.epam.entity.Note;
-import com.epam.service.SmartNote;
+import com.epam.entity.Tag;
+import com.epam.service.NoteService;
 import org.joda.time.DateTime;
 
-import java.text.SimpleDateFormat;
-import java.time.DateTimeException;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Munar on 22.02.2016.
@@ -27,30 +28,38 @@ public class NoteFabric {
                         new DateTime("2002-2-13T13:01:50"),
                         new DateTime("2001-4-15T20:21:20"),
                         new DateTime("2010-10-5T23:01:20")};
-    SmartNote smartNote = new SmartNote();
+    NoteService noteService = new NoteService();
+    private List<Tag> listTags = new ArrayList<>();
+    private List<Category> listCategories = new ArrayList<>();
+    private List<Note> notes = new ArrayList<>();
+    private int tagId;
+    private int categoryId;
+    private int noteId;
 
     public void create(){
         for (String cat:categories){
-            smartNote.addCategory(cat);
+            listCategories.add(new Category(categoryId++,cat));
         }
         for (String tag:tags){
-            smartNote.addTag(tag);
+            listTags.add(new Tag(tagId++,tag));;
         }
 
         for (int i = 0; i < Math.min(titles.length,contents.length); i++) {
-            smartNote.addNote(titles[i], contents[i], categories[i], tags[i], dates[i]);
+            notes.add(new Note(noteId++,titles[i], contents[i], categories[i], tags[i], dates[i]));
         }
     }
     public void print(){
-        smartNote.sortNotesByDate();
-        for (Note note: smartNote.getNotes()){
+        List<Note> newNotes = noteService.sortNotesByDate(notes);
+        for (Note note: newNotes){
             note.printNote();
         }
     }
 
     public void printNotesRelToCat(){
-        smartNote.getNotes().get(2).setCategory(categories[1]);
-        smartNote.getNotes().get(3).setCategory(categories[1]);
-        smartNote.getCategoryNotes(categories[1]);
+
+        List<Note> newNotes = noteService.getCategoryNotes(notes, categories[1]);
+        for (Note note: newNotes){
+            note.printNote();
+        }
     }
 }

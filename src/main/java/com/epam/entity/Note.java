@@ -1,12 +1,9 @@
 package com.epam.entity;
 
-import com.epam.entity.BaseEntity;
 import org.joda.time.DateTime;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 
 /**
  * Created by Munar on 22.02.2016.
@@ -16,33 +13,33 @@ public class Note extends BaseEntity {
     private String content;
     private ArrayList<String> category = new ArrayList<>();
     private ArrayList<String> tag = new ArrayList<>();
-    private DateTime create;
+    private DateTime created;
     private DateTime modified;
 
     public Note(int id, String title, String content, String[] category, String[] tag, DateTime create, DateTime modified){
         super(id);
         this.title = title;
         this.content = content;
-        setCategory(category);
-        setTag(tag);
-        this.create = create;
+        setCategories(category);
+        setTags(tag);
+        this.created = create;
         this.modified = modified;
     }
-    public Note(int id, String title, String content, String[] category, String[] tag, DateTime create){
+    public Note(int id, String title, String content, String[] category, String[] tag, DateTime creted){
         super(id);
         this.title = title;
         this.content = content;
-        setCategory(category);
-        setTag(tag);
-        this.create = create;
+        setCategories(category);
+        setTags(tag);
+        this.created = creted;
     }
-    public Note(int id, String title, String content, String category, String tag, DateTime create){
+    public Note(int id, String title, String content, String category, String tag, DateTime created){
         super(id);
         this.title = title;
         this.content = content;
-        setCategory(category);
-        setTag(tag);
-        this.create = create;
+        addCategory(category);
+        addTag(tag);
+        this.created = created;
     }
 
     public void setTitle(String title) {
@@ -61,10 +58,10 @@ public class Note extends BaseEntity {
         return this.content;
     }
 
-    public void setCategory(String[] category) {
+    public void setCategories(String[] category) {
         Collections.addAll(this.category, category);
     }
-    public void setCategory(String category) {
+    public void addCategory(String category) {
         this.category.add(category);
     }
 
@@ -72,11 +69,11 @@ public class Note extends BaseEntity {
         return this.category;
     }
 
-    public void setTag(String[] tag) {
+    public void setTags(String[] tag) {
         Collections.addAll(this.tag, tag);
     }
 
-    public void setTag(String tag) {
+    public void addTag(String tag) {
         this.tag.add(tag);
     }
 
@@ -84,12 +81,12 @@ public class Note extends BaseEntity {
         return this.tag;
     }
 
-    public void setCreate(DateTime create) {
-        this.create = create;
+    public void setCreated(DateTime created) {
+        this.created = created;
     }
 
-    public DateTime getCreate() {
-        return this.create;
+    public DateTime getCreated() {
+        return this.created;
     }
 
     public void setModified(DateTime modified) {
@@ -153,7 +150,7 @@ public class Note extends BaseEntity {
     }
 
     public void printNote(){
-        String create = getCreate()!=null ? getCreate().toString() : "";
+        String create = getCreated()!=null ? getCreated().toString() : "";
         String modified = getModified() != null ? getModified().toString() : "";
         System.out.println("\n");
         System.out.println("## Note-"+getId()+" ##  -- "+create+"\nModified:"+modified);

@@ -4,7 +4,7 @@ package com.epam.entity;
  * Created by Munar on 22.02.2016.
  */
 class BaseEntity {
-    private int id;
+    private Integer id;
 
     BaseEntity(int id){
         this.id = id;
